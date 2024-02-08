@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="nav-container">
+            {% include 'base/navigation.html' %}
+        </div>
+        <div class="content-container">
+            <div class="error-container">
+                <h1 class="error-quote">404 - Page Not Found</h1>
+                <a class="back-button" href="/">Back to Home</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

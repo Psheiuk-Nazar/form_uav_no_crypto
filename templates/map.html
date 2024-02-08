@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+<title>{% block title %}Карта{% endblock %}</title>
+
+{% block content %}
+    <div class="container">
+        <div class="nav-container">
+            {% include 'base/navigation.html' %}
+        </div>
+        <div class="content-container">
+            <div id="map" style="height: 400px;"></div>
+
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+            <script>
+                var map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+
+                L.marker([{{ end[0] }}, {{ end[1] }}]).addTo(map)
+                    .bindPopup('Start')
+                    .openPopup()
+                L.marker([{{ latitude }}, {{ longitude }}]).addTo(map)
+                    .bindPopup('start')
+                    .openPopup()
+            </script>
+        </div>
+    </div>
+{% endblock %}

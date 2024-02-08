@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="nav-container">
+            {% include 'base/navigation.html' %}
+        </div>
+        <div class="content-container">
+            <div class="first_bloc">
+            <table>
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>Mission</td>
+                        <td>
+                           <span class="status_ok">{{ mission_status }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mission execution</td>
+                        <td>
+                           <span class="status_ok">{{ mission_execution_status }}</span>
+                        </td>
+                    </tr>
+            </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
