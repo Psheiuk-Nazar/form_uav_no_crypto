@@ -1,0 +1,199 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.nav-container {
+    flex: 10%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 130vh;
+
+}
+
+.first_quoter{
+    color: black
+}
+
+.first_bloc{
+    background-color: gray;
+    max-width: 600px;
+}
+.content-container {
+    flex: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-image: url('drones_1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    width: 80%;
+}
+@media only screen and (max-width: 600px) {
+    nav {
+        display: none;
+    }
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #555;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #777;
+}
+
+
+form {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+    margin-right: 35%;
+}
+
+@media screen and (max-width: 768px) {
+    form {
+        width: 100%;
+        max-width: none;
+    }
+}
+h2 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+    }
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.table-container {
+    width: 40%;
+    margin: auto
+}
+
+table {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: left;
+    background-color: white;
+}
+
+th {
+    border: 1px solid #333;
+    background-color: #4caf50;
+    color: white;
+}
+
+.form_1 {
+    max-width: 300px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+
+   }
+.form_submit {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.form_submit:hover {
+    background-color: green;
+}
+
+.blue-button {
+    background-color: #006699;;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.blue-button:hover {
+    background-color: #004466;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+}

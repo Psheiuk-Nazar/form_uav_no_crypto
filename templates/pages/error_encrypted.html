@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="nav-container">
+            {% include 'base/navigation.html' %}
+        </div>
+        <div class="content-container">
+            <div class="error-container">
+                <h1 class="error-quote">Error {{ param[1] }} try again</h1>
+                <h2 class="error-quote">{{ param[0] }}</h2>
+                <a class="back-button" href="/">Back</a>
+                {% block inner_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

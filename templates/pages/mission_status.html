@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+<title>{% block title %}Останній лог{% endblock %}</title>
+{% block content %}
+    <div class="container">
+        <div class="nav-container">
+            {% include 'base/navigation.html' %}
+        </div>
+        <div class="content-container">
+            <h2>Останній лог</h2>
+            <pre id="log-content"></pre>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script>
+                function updateLog() {
+                    $.ajax({
+                        url: '/get_last_log/',
+                        type: 'GET',
+                        success: function(response) {
+                            $("#log-content").text(response.log_content);
+                        },
+                        complete: function() {
+                            setTimeout(updateLog, 6000);
+                        }
+                    });
+                }
+
+                $(document).ready(function() {
+                    updateLog();
+                });
+            </script>
+        </div>
+    </div>
+{% endblock %}

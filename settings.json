@@ -1,0 +1,19 @@
+{
+    "form":{
+        "secret_key": "7795e6624810a48386242c306f16ad75cea07a612c2df456",
+        "host": "localhost",
+        "port": 5000,
+        "mission_executor": "cd ../uav2rivne && python main.py -c config.json",
+        "logs_path": "../uav2rivne/logs",
+        "mission_save_path": "",
+        "gpio_buzzer": 26
+},
+    "mission": {
+        "TAKE_OFF_COMMAND": "take_off",
+        "START_COMMAND": "start",
+        "WAY_TO_POINT_COMMAND": "way_to_point",
+        "CONDITION_YAW_COMMAND": "condition_yaw",
+        "BEEP_COMMAND": "beep"
+    }
+
+}

@@ -1,0 +1,100 @@
+{% extends 'base/base.html' %}
+<title>{% block title %}Форма GPS{% endblock %}</title>
+{% block content  %}
+<div class="container">
+    <div class="nav-container">
+        {% include 'base/navigation.html' %}
+    </div>
+    <div class="content-container">
+        <form action="/mission_gps/save_gps/" method="post" enctype="multipart/form-data" id="configForm">
+            <h2>Форма конфігурації UAV з GPS координатами </h2>
+
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token() }}
+
+            <label for="start_coordinate">
+                <a style="color: blue" onclick="performGoogleSearch('start_latitude')">
+                {{ form.start_coordinate.label }}</a>
+            </label>
+            {{ form.start_coordinate }}<br>
+
+            <label for="end_coordinate">
+                <a style="color: blue" onclick="performGoogleSearch('end_latitude')">
+                    {{ form.end_coordinate.label }} </a>
+            </label>
+            {{ form.end_coordinate }}<br>
+
+
+            <label for="fly_altitude">{{ form.fly_altitude.label }}</label>
+            {{ form.fly_altitude }}<br>
+
+            <label for="finish_yaw">{{ form.finish_yaw.label }}</label>
+            {{ form.finish_yaw }}<br>
+
+            
+            {{ form.submit }}
+
+            <script>
+                window.onload = function() {
+                    loadData();
+                };
+            </script>
+
+
+        </form>
+
+        <script>
+            function loadData() {
+
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+
+                    document.getElementById("start_coordinate").value = data.start;
+                    document.getElementById("end_coordinate").value = data.end;
+                    document.getElementById("fly_altitude").value = data.fly_altitude;
+                    document.getElementById("finish_yaw").value = data.finish_yaw;
+                }
+                };
+                xhr.open("GET", "/get_data/", true);
+                xhr.send();
+            }
+
+
+            document.getElementById('jsonFile').addEventListener('change', function (event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    try {
+                        const jsonData = JSON.parse(e.target.result);
+
+                        // Автоматичне заповнення полів форми
+                        document.getElementById('start_latitude').value = jsonData.start || '';
+                        document.getElementById('end_coordinate').value = jsonData.end || '';
+                        document.getElementById('fly_altitude').value = jsonData.fly_altitude || '';
+                        document.getElementById('finish_yaw').value = jsonData.finish_yaw || '';
+                    } catch (error) {
+                        console.error('Помилка при зчитуванні файлу JSON:', error);
+                    }
+                };
+
+                reader.readAsText(file);
+            }
+            });
+
+            function performGoogleSearch(inputId) {
+                var latitude = document.getElementById(inputId).value;
+                var googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=" + latitude + "&t=k";
+                window.open(googleMapsUrl, "_blank");
+            }
+        </script>
+    </div>
+</div>
+
+{% endblock %}

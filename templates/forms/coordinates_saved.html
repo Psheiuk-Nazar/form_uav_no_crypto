@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+<title>{% block title %}Результат місії GPS{% endblock %}</title>
+{% block content  %}
+    <div class="container">
+        <div class="nav-container">
+            {% include 'base/navigation.html' %}
+        </div>
+        <div class="content-container">
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Параметр</th>
+                        <th>Значення</th>
+                    </tr>
+                    <tr>
+                        <td>Початкові координати</td>
+                        <td>{{ info.start }}</td>
+                    </tr>
+                    <tr>
+                        <td>Кінцеві координати</td>
+                        <td>{{ info.end }}</td>
+                    </tr>
+                    <tr>
+                        <td>Азімут в кінці місії</td>
+                        <td>{{ info.finish_yaw }}</td>
+                    </tr>
+                    <tr>
+                        <td>Висота польоту</td>
+                        <td>{{ info.fly_altitude }}</td>
+                    </tr>
+                    <tr>
+                        <td>GPIO in Raspberry PI</td>
+                        <td>{{ info.gpio }}</td>
+                    </tr>
+                </table>
+            </div>
+            <form class="form_1" method="post" action="{{ url_for('run_function') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                <button class="form_submit" type="submit">Запуск місії</button>
+                <a class="blue-button" href="{{ url_for('show_map') }}">Перейти на карту</a>
+            </form>
+            <div id="map"></div>
+        </div>
+        <script>
+            var map = L.map('map', {
+                center: [51.505, -0.09],
+                zoom: 10, // Adjust the initial zoom level as needed
+                maxBounds: L.latLngBounds([51.505, -0.09], [51.505, -0.09]),
+                maxZoom: 14 // Set the maximum zoom level
+            });
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Add a marker to the map
+            L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+                .openPopup();
+        </script>
+    </div>
+{% endblock %}
