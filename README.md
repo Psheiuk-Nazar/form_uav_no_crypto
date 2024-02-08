@@ -8,43 +8,55 @@ git clone https://github.com/uav8rivne/form_uav.git
 ```
 # Venv
 ! If we use venv!!! be carefuller when use venv, change form_uav.sh
-```
+``` python
 python -m venv venv
+```
+Windows
+``` python
 source venv//Scripts//activate
-
+```
+Ubunta
+``` python
+source venv/bin/activate
 ```
 
 # Installs 
-```
+``` python
+
 pip install -r requirements.txt
+
 ```
+
 
 # Configuration
-Open config_form.json
+Open settings.json
 Change parameters 
-    "form":{
+```json
+
+    "form" : {
         "secret_key": Flask -project secret key
-        "os": "windows", -> your os (cryptosetup doesn`t work in Windows)
         "host": "localhost", -> host where program will work
         "port": 5000, -> port where program will work
-        "mission_executor":  python /way/to/mission/main.py -c /way/to/mission/config.json
+        "mission_executor": python /way/to/mission/main.py -c /way/to/mission/config.json
         "logs_path": -> dir where logs will save
-	    "mission_save_path": -> dir where mission.json will save
+        "mission_save_path": -> dir where mission.json will save
         "gpio_buzzer": 26, -> buzzer gpio in raspberry pi
-        "crypto_volume_name": "cryptovolume", -> name of cryptovolume file -> /root/
-        "crypto_volume_dir": "/mnt/crypted_data/" -> dir where must be unmount information
-
+    }
+```
 ## Usage
 Run the Flask application:
 
-
+Ubunta
 ```
 sudo python main.py -c settings.json
 
 ```
+Windows
+``` python
+python main.py -c settings.json
+```
 
 1. Open your web browser and go to http://{your_host_name}.
-2. If you use crypto module please LuksOpen file, input password in form
 2. Fill out the configuration form
 3. Click the "Save" button to save the configuration.
 4. Check coordinates on map
