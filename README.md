@@ -4,7 +4,7 @@ Users can input various values through a form, and the configuration data is the
 
 # Clone
 ```
-git clone https://github.com/uav8rivne/form_uav.git
+git clone https://github.com/uav8rivne/form_uav_no_crypto.git
 ```
 # Venv
 ! If we use venv!!! be carefuller when use venv, change form_uav.sh
