@@ -7,13 +7,6 @@
         "logs_path": "../uav2rivne/logs",
         "mission_save_path": "",
         "gpio_buzzer": 26
-},
-    "mission": {
-        "TAKE_OFF_COMMAND": "take_off",
-        "START_COMMAND": "start",
-        "WAY_TO_POINT_COMMAND": "way_to_point",
-        "CONDITION_YAW_COMMAND": "condition_yaw",
-        "BEEP_COMMAND": "beep"
     }
 
 }

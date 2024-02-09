@@ -13,13 +13,13 @@
             {{ form.csrf_token() }}
 
             <label for="start_coordinate">
-                <a style="color: blue" onclick="performGoogleSearch('start_latitude')">
+                <a style="color: blue" onclick="performGoogleSearch('start_coordinate')">
                 {{ form.start_coordinate.label }}</a>
             </label>
             {{ form.start_coordinate }}<br>
 
             <label for="end_coordinate">
-                <a style="color: blue" onclick="performGoogleSearch('end_latitude')">
+                <a style="color: blue" onclick="performGoogleSearch('end_coordinate')">
                     {{ form.end_coordinate.label }} </a>
             </label>
             {{ form.end_coordinate }}<br>

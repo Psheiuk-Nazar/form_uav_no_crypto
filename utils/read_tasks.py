@@ -1,6 +1,8 @@
 import json
 
-from utils.base_info import read_json_file, gps_form_name, config
+from utils.base_info import read_json_file, gps_form_name, mission
+
+
 
 
 def update_command_parameter(config_data, command_name, param_name, new_value):
@@ -21,7 +23,7 @@ def update_command_parameter(config_data, command_name, param_name, new_value):
         config_data[command_index]["params"][param_name] = new_value
 
 
-def change_mission_parameter(coordinate, config=config):
+def change_mission_parameter(coordinate):
 
     """
     Update mission parameters based on the provided coordinate.
@@ -31,13 +33,13 @@ def change_mission_parameter(coordinate, config=config):
     """
 
     config_data = read_json_file(gps_form_name)
-    update_command_parameter(config_data, config["mission"]["TAKE_OFF_COMMAND"], "altitude", coordinate.get("fly_altitude"))
-    update_command_parameter(config_data, config["mission"]["START_COMMAND"], "position", coordinate.get("start"))
-    update_command_parameter(config_data, config["mission"]["WAY_TO_POINT_COMMAND"], "goal_position",
+    update_command_parameter(config_data, mission["TAKE_OFF_COMMAND"], "altitude", coordinate.get("fly_altitude"))
+    update_command_parameter(config_data, mission["START_COMMAND"], "position", coordinate.get("start"))
+    update_command_parameter(config_data, mission["WAY_TO_POINT_COMMAND"], "goal_position",
                              coordinate.get("end"))
-    update_command_parameter(config_data, config["mission"]["CONDITION_YAW_COMMAND"], "yaw_goal",
+    update_command_parameter(config_data, mission["CONDITION_YAW_COMMAND"], "yaw_goal",
                              coordinate.get("finish_yaw"))
-    update_command_parameter(config_data, config["mission"]["BEEP_COMMAND"], "gpio", coordinate.get("gpio"))
+    update_command_parameter(config_data, mission["BEEP_COMMAND"], "gpio", coordinate.get("gpio"))
 
     with open(gps_form_name, "w") as config:
         json.dump(config_data, config, indent=4)

@@ -12,17 +12,17 @@ parser.add_argument("-c", "--config", help="Config file", required=True)
 args = parser.parse_args()
 config = json.loads(open(args.config).read())
 
-mission_commands = [
-    {"cmd": "beep", "params": {"gpio": config["form"]["gpio_buzzer"]}},
-    {"cmd": "set_mode", "params": {"mode": "ALT_HOLD"}},
-    {"cmd": "take_off", "params": {"altitude": 1}},
-    {"cmd": "start", "params": {"position": [11.0, 22.0]}},
-    {"cmd": "way_to_point", "params": {"goal_position": [11.0, 22.0]}},
-    {"cmd": "condition_yaw", "params": {"yaw_goal": 100}},
-    {"cmd": "final_info"},
-    {"cmd": "set_mode", "params": {"mode": "LAND"}},
-    {"cmd": "finish_mission"}
-]
+mission = {
+    "TAKE_OFF_COMMAND": "take_off",
+    "START_COMMAND": "start",
+    "WAY_TO_POINT_COMMAND": "way_to_point",
+    "CONDITION_YAW_COMMAND": "condition_yaw",
+    "BEEP_COMMAND": "beep",
+    "INFO_COMMAND": "final_info",
+    "MODE_COMMAND": "set_mode",
+    "MODE_FINISH": "finish_mission"
+}
+
 
 gps_form_name = f"{config['form']['mission_save_path']}" + "mission.json"
 
@@ -36,6 +36,17 @@ def read_json_file(name) :
         return read_json_file(name)
 
 def made_mission_file()->None:
+    mission_commands = [
+        {"cmd": mission["BEEP_COMMAND"], "params": {"gpio": config["form"]["gpio_buzzer"]}},
+        {"cmd": mission["MODE_COMMAND"], "params": {"mode": "ALT_HOLD"}},
+        {"cmd": mission["TAKE_OFF_COMMAND"], "params": {"altitude": 100}},
+        {"cmd": mission["START_COMMAND"], "params": {"position": [48.0674, 12.86269304]}},
+        {"cmd": mission["WAY_TO_POINT_COMMAND"], "params": {"goal_position": [48.05192, 12.8378]}},
+        {"cmd": mission["CONDITION_YAW_COMMAND"], "params": {"yaw_goal": 100}},
+        {"cmd": mission["INFO_COMMAND"]},
+        {"cmd": mission["MODE_COMMAND"], "params": {"mode": "LAND"}},
+        {"cmd": mission["MODE_FINISH"]}
+    ]
     try:
         json_data = json.dumps(mission_commands, indent=4)
         with open(gps_form_name, 'w') as file:

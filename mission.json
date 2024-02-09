@@ -1,0 +1,56 @@
+[
+    {
+        "cmd": "beep",
+        "params": {
+            "gpio": 26
+        }
+    },
+    {
+        "cmd": "set_mode",
+        "params": {
+            "mode": "ALT_HOLD"
+        }
+    },
+    {
+        "cmd": "take_off",
+        "params": {
+            "altitude": 100
+        }
+    },
+    {
+        "cmd": "start",
+        "params": {
+            "position": [
+                48.0674,
+                12.86269304
+            ]
+        }
+    },
+    {
+        "cmd": "way_to_point",
+        "params": {
+            "goal_position": [
+                48.05192,
+                12.8378
+            ]
+        }
+    },
+    {
+        "cmd": "condition_yaw",
+        "params": {
+            "yaw_goal": 100.0
+        }
+    },
+    {
+        "cmd": "final_info"
+    },
+    {
+        "cmd": "set_mode",
+        "params": {
+            "mode": "LAND"
+        }
+    },
+    {
+        "cmd": "finish_mission"
+    }
+]
